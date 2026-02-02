@@ -1,0 +1,35 @@
+program -> import* statement*
+import -> IMPORT TEXT (AS ID)? SCOLON
+statement -> struct | method | variable
+struct -> attribute* visibility? STRUCT ID \{ structStatement* \}
+structStatement -> variable | method
+variable -> attribute* visibility? localVariable
+attribute -> \[ (ID \( expression (COMMA expression)* \) )* \]
+method -> attribute* visibility? ID ID \( parameter (COMMA parameter)* \) \{ methodStatement* \}
+visibility -> PUBLIC | PRIVATE
+parameter -> ID (\*)? ID
+methodStatement -> ifStatement | forStatement | forEachStatement | whileStatement | doWhileStatement | localVariable
+ifStatement -> IF \( expression \) methodBlockStatement ( ELIF \( expression \) methodBlockStatement )* ( ELSE methodBlockStatement )?
+whileStatement -> WHILE \( expression \) methodBlockStatement
+doWhileStatement -> DO methodBlockStatement WHILE \( expression \) SCOLON
+localVariable -> CONST? ID (\*)? (\[\])? ID (ASSIGN expression)? SCOLON
+forStatement -> FOR \( ( expression | localVariable) ; expression ; expression \) methodBlockStatement
+forEachStatement -> FOREACH \( localVariable IN expression \) methodBlockStatement
+methodBlockStatement -> \{ methodStatement* \}
+
+expression -> assignment
+assignment -> lambda | logicalOr (ASSIGN assignment)?
+logicalOr -> logicalAnd (OR logicalAnd)*
+logicalAnd -> equality (AND equality)*
+equality -> comparison ( (EQ | NEQ) comparison)*
+comparison -> term ( (LT | LE | GT | GE) term)*
+term -> factor ( (PLUS | MINUS) factor)*
+factor -> unary ( (MULT | DIV | MOD) unary)*
+unary -> (NOT | MINUS | PLUS) unary | postfix
+postfix -> primary ( \( argumentList? \) | DOT ID )*
+argumentList -> expression (COMMA expression)*
+primary -> literal | ID | \( expression \) | arrayLiteral
+arrayLiteral -> \[ (expression (COMMA expression)*)? \]
+literal -> INT | FLOAT | STRING | CHAR | TRUE | FALSE | NULL
+lambda -> FN \( lambdaParams? \) ARROW expression
+lambdaParams -> parameter (COMMA parameter)*
