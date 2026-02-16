@@ -1,0 +1,20 @@
+// NeoC Standard Library - OS
+extern struct ProcessInfo {
+    int pid;
+    int parentPid;
+    int exitCode;
+};
+
+extern struct TimeInfo {
+    int unixSeconds;
+    int nanoseconds;
+};
+
+extern fn os_getenv(int keyPtr) -> int;
+extern fn os_setenv(int keyPtr, int valuePtr) -> int;
+extern fn os_spawn(int commandPtr, int argsPtr) -> ProcessInfo;
+extern fn os_wait(int pid) -> int;
+extern fn os_sleep_ms(int millis) -> void;
+extern fn os_now() -> TimeInfo;
+extern fn os_cpu_count() -> int;
+extern fn os_page_size() -> int;

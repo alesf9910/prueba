@@ -1,0 +1,21 @@
+// NeoC Standard Library - FileSystem
+extern struct FileHandle {
+    int id;
+    int flags;
+};
+
+extern struct FileInfo {
+    int size;
+    int createdAt;
+    int updatedAt;
+};
+
+extern fn fs_open(int pathPtr, int mode) -> FileHandle;
+extern fn fs_close(FileHandle handle) -> int;
+extern fn fs_read(FileHandle handle, int bufferPtr, int count) -> int;
+extern fn fs_write(FileHandle handle, int bufferPtr, int count) -> int;
+extern fn fs_seek(FileHandle handle, int offset, int origin) -> int;
+extern fn fs_stat(int pathPtr) -> FileInfo;
+extern fn fs_exists(int pathPtr) -> int;
+extern fn fs_create_dir(int pathPtr) -> int;
+extern fn fs_remove(int pathPtr) -> int;

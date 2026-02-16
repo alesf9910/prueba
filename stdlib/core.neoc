@@ -1,0 +1,16 @@
+// NeoC Standard Library - Core primitives
+extern struct Span {
+    int ptr;
+    int len;
+};
+
+extern struct Result {
+    int code;
+    int value;
+};
+
+extern fn panic(int code) -> void;
+extern fn assert(int condition) -> void;
+extern fn memcpy(int dst, int src, int len) -> int;
+extern fn memcmp(int a, int b, int len) -> int;
+extern fn memset(int dst, int value, int len) -> int;
