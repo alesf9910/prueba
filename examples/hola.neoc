@@ -1,0 +1,20 @@
+import "stdlib/core";
+import "stdlib/net";
+alias fs = "stdlib/fs";
+
+extern fn puts(int value) -> int;
+
+extern struct Punto {
+    int x;
+    int y;
+};
+
+fn suma(int a, int b) -> int {
+    return a + b;
+}
+
+fn main() -> int {
+    let int n = suma(40, 2);
+    puts(n);
+    return 0;
+}

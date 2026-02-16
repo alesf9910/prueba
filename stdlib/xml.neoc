@@ -1,0 +1,23 @@
+// NeoC Standard Library - XML
+extern struct XmlDocument {
+    int root;
+    int arena;
+};
+
+extern struct XmlNode {
+    int kind;
+    int id;
+};
+
+extern struct XmlAttribute {
+    int name;
+    int value;
+};
+
+extern fn xml_parse(int textPtr, int textLen) -> XmlDocument;
+extern fn xml_root(XmlDocument doc) -> XmlNode;
+extern fn xml_first_child(XmlNode node) -> XmlNode;
+extern fn xml_next_sibling(XmlNode node) -> XmlNode;
+extern fn xml_name(XmlNode node) -> int;
+extern fn xml_text(XmlNode node) -> int;
+extern fn xml_attribute(XmlNode node, int keyPtr) -> XmlAttribute;

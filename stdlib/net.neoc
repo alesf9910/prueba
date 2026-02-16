@@ -1,0 +1,28 @@
+// NeoC Standard Library - Networking
+extern struct IpAddress {
+    int family;
+    int a;
+    int b;
+    int c;
+    int d;
+};
+
+extern struct SocketHandle {
+    int id;
+    int protocol;
+};
+
+extern struct Endpoint {
+    IpAddress address;
+    int port;
+};
+
+extern fn net_socket_tcp() -> SocketHandle;
+extern fn net_socket_udp() -> SocketHandle;
+extern fn net_connect(SocketHandle socket, Endpoint endpoint) -> int;
+extern fn net_bind(SocketHandle socket, Endpoint endpoint) -> int;
+extern fn net_listen(SocketHandle socket, int backlog) -> int;
+extern fn net_accept(SocketHandle socket) -> SocketHandle;
+extern fn net_send(SocketHandle socket, int bufferPtr, int len) -> int;
+extern fn net_recv(SocketHandle socket, int bufferPtr, int len) -> int;
+extern fn net_close(SocketHandle socket) -> int;

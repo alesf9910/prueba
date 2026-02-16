@@ -1,0 +1,24 @@
+// NeoC Standard Library - JSON
+extern struct JsonDocument {
+    int root;
+    int arena;
+};
+
+extern struct JsonValue {
+    int kind;
+    int payload;
+};
+
+extern struct JsonWriter {
+    int target;
+    int depth;
+};
+
+extern fn json_parse(int textPtr, int textLen) -> JsonDocument;
+extern fn json_root(JsonDocument doc) -> JsonValue;
+extern fn json_get(JsonValue obj, int keyPtr) -> JsonValue;
+extern fn json_index(JsonValue arr, int index) -> JsonValue;
+extern fn json_as_int(JsonValue value) -> int;
+extern fn json_as_string(JsonValue value) -> int;
+extern fn json_write_begin(int bufferPtr) -> JsonWriter;
+extern fn json_write_end(JsonWriter writer) -> int;

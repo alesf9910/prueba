@@ -1,0 +1,25 @@
+// NeoC Standard Library - Hardware / low-level
+extern struct CpuInfo {
+    int architecture;
+    int coreCount;
+    int threadCount;
+};
+
+extern struct MemoryInfo {
+    int totalBytes;
+    int freeBytes;
+};
+
+extern struct DeviceHandle {
+    int bus;
+    int slot;
+    int func;
+};
+
+extern fn hw_cpu_info() -> CpuInfo;
+extern fn hw_memory_info() -> MemoryInfo;
+extern fn hw_rdtsc() -> int;
+extern fn hw_in8(int port) -> int;
+extern fn hw_out8(int port, int value) -> void;
+extern fn hw_map_mmio(int physicalAddress, int size) -> int;
+extern fn hw_unmap_mmio(int virtualAddress, int size) -> int;
